@@ -1,0 +1,3 @@
+Name	Read1	Read2
+BL010-K562_Zymo	/oak/stanford/groups/wjg/bliu/data/test/fastq/BL010-K562_Zymo-2.210414_NB551514_0590_AHG7WVBGXH_R1.fastq.gz	/oak/stanford/groups/wjg/bliu/data/test/fastq/BL010-K562_Zymo-2.210414_NB551514_0590_AHG7WVBGXH_R2.fastq.gz
+BL009-K562_Zymo	/oak/stanford/groups/wjg/bliu/data/test/fastq/BL009-K562_Zymo-1.210414_NB551514_0590_AHG7WVBGXH_R1.fastq.gz	/oak/stanford/groups/wjg/bliu/data/test/fastq/BL009-K562_Zymo-1.210414_NB551514_0590_AHG7WVBGXH_R2.fastq.gz
