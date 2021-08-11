@@ -19,7 +19,7 @@ rule_group_dict = {
         expand("output/peaks/{sample_label}_summits.bed", sample_label = sample_labels),
         expand("output/plots/TSS/{sample_label}.TSS.insertion_profile.png", sample_label = sample_labels),
         expand("output/counts/{sample_label}.saf",sample_label = sample_labels),
-        expand("output/plots/{bed_data}/{sample_label}.{bed_data}.Vplot.eps", bed_data = BEDS.keys(), sample_label = sample_labels),
+#        expand("output/plots/{bed_data}/{sample_label}.{bed_data}.Vplot.eps", bed_data = BEDS.keys(), sample_label = sample_labels),
         expand("output/fastqs/qc/{sample_label}_R1_untrimmed_fastqc.html", sample_label = sample_labels),
         expand("output/fastqs/qc/{sample_label}_R1_trimmed_fastqc.html", sample_label = sample_labels),
         expand("output/bams/qc/complexity/{sample_label}.extrapolated_yield.txt", sample_label = sample_labels),
