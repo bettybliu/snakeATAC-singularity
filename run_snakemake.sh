@@ -28,7 +28,7 @@ rm -rf .tmp; mkdir .tmp
 for ((NUM=2; NUM<=$(wc -l < $META); NUM++))
 do 
     METAPATH=.tmp/tmp_meta_$(echo $((NUM-1))).txt
-    sed -n "1p;${NUM}p" meta.txt > ${METAPATH} 
+    sed -n "1p;${NUM}p" $META > ${METAPATH} 
     # wrap sbatch in another bash because sbatch exits shell immediately after job submission
     SNAKE_CMD="snakemake --nolock -T -p -j 10 -s Snakefile.py --config RULE_GROUP='single' META=${METAPATH}"
     bash -c "sbatch --parsable -p sfgf,wjg,biochem -n 8 -t 24:00:00 --mem-per-cpu 64g --wrap \"${CONTAINER} ${SNAKE_CMD}\" >> .tmp/tmp_joblist.txt"
