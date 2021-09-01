@@ -19,12 +19,13 @@ rule_group_dict = {
         expand("output/peaks/{sample_label}_summits.bed", sample_label = sample_labels),
         expand("output/plots/TSS/{sample_label}.TSS.insertion_profile.png", sample_label = sample_labels),
         expand("output/counts/{sample_label}.saf",sample_label = sample_labels),
-#        expand("output/plots/{bed_data}/{sample_label}.{bed_data}.Vplot.eps", bed_data = BEDS.keys(), sample_label = sample_labels),
         expand("output/fastqs/qc/{sample_label}_R1_untrimmed_fastqc.html", sample_label = sample_labels),
         expand("output/fastqs/qc/{sample_label}_R1_trimmed_fastqc.html", sample_label = sample_labels),
         expand("output/bams/qc/complexity/{sample_label}.extrapolated_yield.txt", sample_label = sample_labels),
         expand("output/fastqs/qc/{sample_label}_R1_trimmed_screen.html", sample_label = sample_labels),
         expand("output/coverage_data/{sample_label}.insertion_track.bw",sample_label = sample_labels),
+	expand("output/coverage_data/qc/{sample_label}.100bp_coverage.bw",     sample_label=sample_labels),
+	# expand("output/plots/{bed_data}/{sample_label}.{bed_data}.Vplot.eps", bed_data = BEDS.keys(), sample_label = sample_labels), # Vplot doesn't work consistently due to a python2.7 user site conflict on sherlock, use at your own risk
 	],
     "group": [
         expand("output/beds/qc/in_peaks/{sample_label}.reads_in_peaks.txt",sample_label = sample_labels),

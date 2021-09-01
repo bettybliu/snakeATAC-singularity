@@ -14,11 +14,11 @@ FASTQ_SCREEN_CONF = "/oak/stanford/groups/wjg/bliu/data/test/snakeATAC_sing/fast
 # unfortunately not everything in the shared lab resources folders have consistent naming
 # 	so always double check if these files exist if you are working outside of hg19/hg38/mm9
 BEDS_DICT = {"mm9": "/home/groups/wjg/lab/snakeATAC/resources/mm9/mm9_tss.ensembl.bed",
-             "hg19": "/home/groups/wjg/lab/snakeATAC/resources/hg19/hg19_tss.ensembl.bed",
-             "hg38": "/oak/stanford/groups/wjg/share/resources/hg38/hg38.tss.bed"}
+	     "hg19": "/home/groups/wjg/lab/snakeATAC/resources/hg19/hg19_tss.ensembl.bed",
+	     "hg38": "/oak/stanford/groups/wjg/share/resources/hg38/hg38.tss.bed"}
 BEDS = {"TSS": BEDS_DICT[SPECIES_GENOME]}
 TSS = '/oak/stanford/groups/wjg/share/resources/hg38/hg38.tss.bed' if SPECIES_GENOME=="hg38" \
-        else '/home/groups/wjg/lab/snakeATAC/resources/%s/%s_tss.ensembl.bed' % (SPECIES_GENOME, SPECIES_GENOME)
+	else '/home/groups/wjg/lab/snakeATAC/resources/%s/%s_tss.ensembl.bed' % (SPECIES_GENOME, SPECIES_GENOME)
 
 REFERENCE_FILE = '/home/groups/wjg/lab/genomes/%s/%s' % (SPECIES_GENOME, SPECIES_GENOME)
 CHROM_SIZES = '/home/groups/wjg/lab/genomes/gSizes/%s.all.genomsize' % (SPECIES_GENOME)
