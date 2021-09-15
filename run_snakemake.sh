@@ -38,6 +38,5 @@ cat .tmp/tmp_joblist.txt
 
 ##### 4. GROUP
 #	after all single-sample jobs are completed, run group analysis tasks
-#	need to remove the snakeATAC.txt output generated from single samples analysis first
-SNAKE_CMD_GROUP="rm -rf snakeATAC.txt; snakemake -T -p -j 10 -s Snakefile.py --config RULE_GROUP='group' META=${META}"
+SNAKE_CMD_GROUP="snakemake -T -p -j 10 -s Snakefile.py --config RULE_GROUP='group' META=${META}"
 sbatch --dependency=afterok:$(cat .tmp/tmp_joblist.txt|tr '\n' ',' | sed 's/,$/\n/') -p sfgf,wjg,biochem -n 8 -t 24:00:00 --mem-per-cpu 64g --wrap "${CONTAINER} '${SNAKE_CMD_GROUP}'"
