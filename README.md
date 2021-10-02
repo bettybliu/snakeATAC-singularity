@@ -1,29 +1,26 @@
 # Bulk ATAC Analysis in a Singularity Container
 Author: Betty Liu <liubetty@stanford.edu>
 
-Version: 0.0.2
-
-Last Updated: August 9th, 2021
-
 ### Introduction
 Welcome to the new era of bulk ATAC analysis in the Greenleaf Lab!!! This document describes how to run snakeATAC analysis using a singularity container. The Stanford Sherlock website has a [description of what a container means](https://www.sherlock.stanford.edu/docs/software/using/singularity/) and why Singulairty was chosen over Docker. The templates and slurm commands have only been tested with Sherlock, but with the containerization of all packages it is easy to port this to another HPC platform in the future. Sherlock has ```singularity``` enabled for all users by default so you can check out the commands by typing ```singularity help``` .
 
 ### Steps
-1. Copy all files required from ```/oak/stanford/groups/wjg/bliu/templates/snakeATAC_sing```:
-
-    ```cp -r /oak/stanford/groups/wjg/bliu/templates/snakeATAC_sing /your/custom/analysis/path```
-
-2. Go to file ```snakeATAC_config.py```, change variables in the ```User Inputs``` section based on your experiment.
-3. Go to file ```fastq_screen.conf```, check the paths of the genomes to screen against.
-4. Go to file ```meta.txt``` and change the name of experiments and path to your reads. (Optional) You could run the following command to automatically generate ```meta.txt``` based on fastq file names. If your fastq filenames don't contain ```_R1``` and ```_R2```, use the shell command ```rename``` to change the names.
-	
-	```python snakeATAC_config.py```
-
+1. Clone this repository into your analysis folder and navigate into the downloaded folder:
+```
+git clone https://github.com/bettybliu/snakeATAC-singularity.git snakeATAC
+cd snakeATAC
+```
+2. Go to file ```snakeATAC_config.py```, change variables in the ```User Inputs``` section based on your experiment. 
+3. Go to file ```meta.txt``` and change the name of experiments and path to your reads. (Optional) You could run the following command to automatically generate ```meta.txt``` based on fastq file names. If your fastq filenames don't contain ```_R1``` and ```_R2```, use the shell command ```rename``` to change the names. Check ```meta.txt``` after running the command to make sure the sample labels are correct.	
+```
+python snakeATAC_config.py
+```
+4. Go to file ```fastq_screen.conf```, check the paths of the genomes to screen against.
 5. Go to file ```Snakefile.py``` and change the analysis you wish to perform by commenting/uncommenting the output file names in ```rule_group_dict```.
-
 6. Run snakeATAC with the following command.
-
-    ```bash run_snakemake.sh```  
+```
+bash run_snakemake.sh
+```  
 
 ### Using Singularity for Other Stuff
 The following container was built to run snakeATAC, but can also be used to run direct commands. It has three conda environments: base, py35, py27. SnakeATAC uses both py35 and py27 environments.
@@ -67,7 +64,7 @@ ${CONTAINER} "snakemake --unlock -s Snakefile.py; snakemake -ns Snakefile.py"
 #       NOTE: the single/group split analysis was implemented because we had difficulties
 #       calling sbatch from within the container. This also enables greater portability to
 #       non-slurm computing clusters in the future, e.g. google cloud, aws)
-META=$(grep "METADATA_FILE = " snakeATAC_config.py |tr "'" "\n"| sed -n "2p")
+META=$(grep "METADATA_FILE = " snakeATAC_config.py |tr "'\"" "\n"| sed -n "2p")
 rm -rf .tmp; mkdir .tmp
 
 for ((NUM=2; NUM<=$(wc -l < $META); NUM++))

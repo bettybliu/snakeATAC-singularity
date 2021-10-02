@@ -22,7 +22,7 @@ ${CONTAINER} "snakemake --unlock -s Snakefile.py; snakemake -ns Snakefile.py"
 #	NOTE: the single/group split analysis was implemented because we had difficulties
 #	calling sbatch from within the container. This also enables greater portability to
 #	non-slurm computing clusters in the future, e.g. google cloud, aws) 
-META=$(grep "METADATA_FILE = " snakeATAC_config.py |tr "'" "\n"| sed -n "2p")
+META=$(grep "METADATA_FILE = " snakeATAC_config.py |tr "'\"" "\n"| sed -n "2p")
 rm -rf .tmp; mkdir .tmp
 
 for ((NUM=2; NUM<=$(wc -l < $META); NUM++))

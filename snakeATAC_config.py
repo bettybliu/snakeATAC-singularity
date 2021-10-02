@@ -7,9 +7,9 @@ from collections import defaultdict
 
 ################## User Inputs ###################
 SPECIES_GENOME = "hg38"
-FASTQ_DIR = '/oak/stanford/groups/wjg/bliu/data/test/fastq'
-METADATA_FILE = '/oak/stanford/groups/wjg/bliu/data/test/snakeATAC_sing/meta.txt'
-FASTQ_SCREEN_CONF = "/oak/stanford/groups/wjg/bliu/data/test/snakeATAC_sing/fastq_screen.conf"
+FASTQ_DIR = "/your/fastq/dir"
+METADATA_FILE = "./meta.txt"
+FASTQ_SCREEN_CONF = "./fastq_screen.conf"
 
 # unfortunately not everything in the shared lab resources folders have consistent naming
 # 	so always double check if these files exist if you are working outside of hg19/hg38/mm9
@@ -35,14 +35,14 @@ ATAC_TOOLS = os.path.join(SNAKE_DIR, 'atac_tools')
 
 # metadata file
 def make_meta(filename):
-    r1_files = list(map(os.path.abspath, glob.glob(os.path.join(FASTQ_DIR, "*_R1*.f*"))))
+    r1_files = sorted(list(map(os.path.abspath, glob.glob(os.path.join(FASTQ_DIR, "*_S*_R1*.f*")))))
     if (len(r1_files) < 1):
-        sys.exit("No fastqs with _R1 found.")
+        sys.exit("No fastqs with _S*_R1 found.")
     r2_files = [os.path.join(os.path.dirname(r1_file), os.path.basename(r1_file).replace('R1', 'R2')) for r1_file in
                 r1_files]
     if all([os.path.isfile(r2_file) for r2_file in r2_files]) is False:
-        sys.exit("Not all matching _R2 files found.")
-    sample_labels = [os.path.basename(r1_file).split("_R1")[0] for r1_file in r1_files]
+        sys.exit("Not all matching _S*_R2 files found.")
+    sample_labels = [os.path.basename(r1_file).split("_R1")[0].rsplit("_S",1)[0] for r1_file in r1_files]
     with open(filename, 'w') as outfile:
         outfile.write("\t".join(["Name", "Read1", "Read2"]) + "\n")
         for sample_label, r1_file, r2_file in zip(sample_labels, r1_files, r2_files):
