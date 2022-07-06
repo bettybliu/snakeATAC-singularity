@@ -23,7 +23,7 @@ bash run_snakemake.sh
 ```  
 
 ### Using Singularity for Other Stuff
-The following container was built to run snakeATAC, but can also be used to run direct commands. It has three conda environments: base, py35, py27. SnakeATAC uses both py35 and py27 environments.
+The following container was built to run snakeATAC, but can also be used to run direct commands. It has three conda environments: base, py35, py27. SnakeATAC uses both py35 and py27 environments. I have a downloaded copy in my oak folder that's used by this pipeline by default. You can download it to a different location using ```singularity pull --arch amd64 library://liubetty/default/atac:latest```. 
 
 ```CONTAINER=/oak/stanford/groups/wjg/bliu/containers/atac.sif```
 
