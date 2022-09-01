@@ -492,7 +492,7 @@ rule make_coverage_bigwig:
     benchmark: "benchmarks/make_coverage_bigwig/{sample_label}_deeptools_make_bigwig.txt"
     shell: 
         # --ignoreForNormalization chrX chrY taken off because we should remove this before calculating peaks anyway
-        "bamCoverage -b {input.bam} -o {output} --binSize 1 --normalizeUsing CPM --extendReads --exactScaling --numberOfProcessors {threads}; "
+        "bamCoverage -b {input.bam} -o {output} --binSize 100 --normalizeUsing CPM --extendReads --exactScaling --numberOfProcessors {threads}; "
 
 rule make_sample_correlation_matrix:
     input: 
