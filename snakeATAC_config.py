@@ -20,7 +20,8 @@ BEDS = {"TSS": BEDS_DICT[SPECIES_GENOME]}
 TSS = '/oak/stanford/groups/wjg/share/resources/hg38/hg38.tss.bed' if SPECIES_GENOME=="hg38" \
 	else '/home/groups/wjg/lab/snakeATAC/resources/%s/%s_tss.ensembl.bed' % (SPECIES_GENOME, SPECIES_GENOME)
 
-REFERENCE_FILE = '/home/groups/wjg/lab/genomes/%s/%s' % (SPECIES_GENOME, SPECIES_GENOME)
+REFERENCE_FILE = '/home/groups/wjg/lab/genomes/hg38-no-haps/hg38' if SPECIES_GENOME=="hg38" \
+	else '/home/groups/wjg/lab/genomes/%s/%s' % (SPECIES_GENOME, SPECIES_GENOME)
 CHROM_SIZES = '/home/groups/wjg/lab/genomes/gSizes/%s.all.genomsize' % (SPECIES_GENOME)
 GENOME_SIZE_DICT = {"mm9": 1.87e9, "sacCer3": 1.2e7, "hg19": 2.7e9, "hg38": 3.0e9}
 EFFECTIVE_GENOME_SIZE = GENOME_SIZE_DICT[SPECIES_GENOME]
