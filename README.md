@@ -1,6 +1,9 @@
 # Bulk ATAC Analysis in a Singularity Container
 Author: Betty Liu <liubetty@stanford.edu>
 
+> [!NOTE] 
+> This repo is now maintained on the [public Greenleaf Lab repo](https://github.com/GreenleafLab/snakeATAC_singularity)
+
 ### Introduction
 Welcome to the new era of bulk ATAC analysis in the Greenleaf Lab!!! This document describes how to run snakeATAC analysis using a singularity container. The Stanford Sherlock website has a [description of what a container means](https://www.sherlock.stanford.edu/docs/software/using/singularity/) and why Singulairty was chosen over Docker. The templates and slurm commands have only been tested with Sherlock, but with the containerization of all packages it is easy to port this to another HPC platform in the future. Sherlock has ```singularity``` enabled for all users by default so you can check out the commands by typing ```singularity help``` .
 
